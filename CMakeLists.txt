@@ -21,3 +21,23 @@ endif()
 
 
 add_subdirectory(lua-5.4.3)
+
+
+include(GNUInstallDirs)
+
+install(TARGETS lua_static
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+#installing headers
+install(DIRECTORY "./lua-5.4.3/include/" # source directory
+        DESTINATION "include" # target directory
+        FILES_MATCHING # install only matched files
+        PATTERN "*.h" # select header files
+        PATTERN "*.hpp" # select header files
+        #PATTERN "*.c" # select header files
+        #PATTERN "*.cpp" # select header files
+)
